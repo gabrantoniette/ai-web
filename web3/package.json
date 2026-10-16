@@ -1,12 +1,12 @@
 {
-  "name": "webai-intro",
+  "name": "ai-web-web3",
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "start": "npx http-server ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Gabriel Antoniette",
   "license": "ISC",
   "description": "",
   "devDependencies": {
