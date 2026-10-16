@@ -71,12 +71,12 @@ export class View {
     }
 
     setButtonToStopMode() {
-        this.elements.button.textContent = 'Parar';
+        this.elements.button.textContent = 'Stop';
         this.elements.button.classList.add('stop-button');
     }
 
     setButtonToSendMode() {
-        this.elements.button.textContent = 'Enviar';
+        this.elements.button.textContent = 'Send';
         this.elements.button.classList.remove('stop-button');
     }
 
@@ -111,7 +111,7 @@ export class View {
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
         removeBtn.className = 'remove-file-btn';
-        removeBtn.textContent = '× Remover arquivo';
+        removeBtn.textContent = '× Remove file';
         removeBtn.onclick = () => {
             this.elements.fileInput.value = '';
             this.elements.filePreview.innerHTML = '';

@@ -1,7 +1,7 @@
 {
   "name": "ai-web",
   "private": true,
-  "description": "Demos de IA nativa no navegador com as Built-in AI APIs do Chrome (Gemini Nano).",
+  "description": "On-device AI demos running in the browser with Chrome Built-in AI APIs (Gemini Nano).",
   "type": "module",
   "scripts": {
     "lint": "npm run lint:js && npm run lint:html",

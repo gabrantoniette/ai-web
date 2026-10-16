@@ -79,13 +79,13 @@ export class FormController {
 
             // Translate the full response to Portuguese
             if (fullResponse && !this.aiService.isAborted()) {
-                this.view.setOutput('Traduzindo resposta...');
+                this.view.setOutput('Translating answer...');
                 const translatedResponse = await this.translationService.translateToPortuguese(fullResponse);
                 this.view.setOutput(translatedResponse);
             }
         } catch (error) {
             console.error('Error during AI generation:', error);
-            this.view.setOutput(`Erro: ${error.message}`);
+            this.view.setOutput(`Error: ${error.message}`);
         }
 
         this.toggleButton(false);

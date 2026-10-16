@@ -10,14 +10,14 @@ export class AIService {
         // @ts-ignore
         const isChrome = !!window.chrome;
         if (!isChrome) {
-            errors.push("⚠️ Este recurso só funciona no Google Chrome ou Chrome Canary (versão recente).");
+            errors.push("⚠️ This feature only works in Google Chrome or Chrome Canary (recent version).");
         }
 
         if (!('LanguageModel' in self)) {
-            errors.push("⚠️ As APIs nativas de IA não estão ativas.");
-            errors.push("Ative a seguinte flag em chrome://flags/:");
+            errors.push("⚠️ The native AI APIs are not enabled.");
+            errors.push("Enable the following flag in chrome://flags/:");
             errors.push("- Prompt API for Gemini Nano (chrome://flags/#prompt-api-for-gemini-nano)");
-            errors.push("Depois reinicie o Chrome e tente novamente.");
+            errors.push("Then restart Chrome and try again.");
             return errors;
         }
 
@@ -30,18 +30,18 @@ export class AIService {
             console.log('Translator Availability:', translatorAvailability);
 
             if (translatorAvailability === 'no') {
-                errors.push("⚠️ Tradução de inglês para português não está disponível.");
+                errors.push("⚠️ English to Portuguese translation is not available.");
             }
         } else {
-            errors.push("⚠️ A API de Tradução não está ativa.");
-            errors.push("Ative a seguinte flag em chrome://flags/:");
+            errors.push("⚠️ The Translator API is not enabled.");
+            errors.push("Enable the following flag in chrome://flags/:");
             errors.push("- Translation API (chrome://flags/#translation-api)");
         }
 
         // Check Language Detection API
         if (!('LanguageDetector' in self)) {
-            errors.push("⚠️ A API de Detecção de Idioma não está ativa.");
-            errors.push("Ative a seguinte flag em chrome://flags/:");
+            errors.push("⚠️ The Language Detector API is not enabled.");
+            errors.push("Enable the following flag in chrome://flags/:");
             errors.push("- Language Detection API (chrome://flags/#language-detector-api)");
         }
 
@@ -57,15 +57,15 @@ export class AIService {
         }
 
         if (availability === 'unavailable') {
-            errors.push(`⚠️ O seu dispositivo não suporta modelos de linguagem nativos de IA.`);
+            errors.push(`⚠️ Your device does not support native AI language models.`);
         }
 
         if (availability === 'downloading') {
-            errors.push(`⚠️ O modelo de linguagem de IA está sendo baixado. Por favor, aguarde alguns minutos e tente novamente.`);
+            errors.push(`⚠️ The AI language model is downloading. Please wait a few minutes and try again.`);
         }
 
         if (availability === 'downloadable') {
-            errors.push(`⚠️ O modelo de linguagem de IA precisa ser baixado, baixando agora... (acompanhe o progresso no terminal do chrome)`);
+            errors.push(`⚠️ The AI language model needs to be downloaded, downloading now... (follow the progress in the Chrome DevTools console)`);
             try {
                 const session = await LanguageModel.create({
                     expectedInputLanguages: ["en"],
@@ -86,7 +86,7 @@ export class AIService {
                 }
             } catch (error) {
                 console.error('Error downloading model:', error);
-                errors.push(`⚠️ Erro ao baixar o modelo: ${error.message}`);
+                errors.push(`⚠️ Error downloading the model: ${error.message}`);
             }
         }
 
