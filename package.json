@@ -1,0 +1,17 @@
+{
+  "name": "ai-web",
+  "private": true,
+  "description": "Demos de IA nativa no navegador com as Built-in AI APIs do Chrome (Gemini Nano).",
+  "type": "module",
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:html",
+    "lint:js": "eslint .",
+    "lint:html": "htmlhint \"web2/*.html\" \"web3/*.html\" web-test.html"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "htmlhint": "^1.9.2"
+  }
+}
