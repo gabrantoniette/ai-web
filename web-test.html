@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<body>
+  <button id="setupButton">Verificar / baixar modelo</button>
+  <pre id="log"></pre>
+
+  <script>
+    const log = (...a) => {
+      console.log(...a);
+      document.getElementById('log').textContent +=
+        a.map(x => typeof x === 'object' ? JSON.stringify(x) : x).join(' ') + '\n';
+    };
+
+    async function getAvailability() {
+      if ('LanguageModel' in self) {
+        return { api: 'LanguageModel (nova)', status: await LanguageModel.availability() };
+      }
+      if (self.ai?.languageModel) {
+        const c = await ai.languageModel.capabilities();
+        return { api: 'ai.languageModel (antiga)', status: c.available };
+      }
+      return { api: 'nenhuma', status: 'unavailable' };
+    }
+
+    async function createSession() {
+      if ('LanguageModel' in self) {
+        return LanguageModel.create({
+          monitor(m) {
+            m.addEventListener('downloadprogress', e =>
+              log(`Baixando: ${Math.round(e.loaded * 100)}%`));
+          }
+        });
+      }
+      return ai.languageModel.create();
+    }
+
+    // Checagem automática ao carregar
+    getAvailability().then(r => log('Disponibilidade:', r));
+
+    // Criação da sessão só depois do clique (evita NotAllowedError)
+    document.getElementById('setupButton').onclick = async () => {
+      try {
+        const session = await createSession();
+        log('Sessão criada com sucesso');
+        const resposta = await session.prompt('Diga olá em uma frase.');
+        log('Resposta:', resposta);
+      } catch (e) {
+        log('Erro:', e.name, e.message);
+      }
+    };
+  </script>
+</body>
+</html>
