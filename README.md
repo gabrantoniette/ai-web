@@ -5,7 +5,7 @@
 Demos de **IA rodando 100% no navegador**, sem servidor e sem chave de API, usando as
 [Built-in AI APIs do Chrome](https://developer.chrome.com/docs/ai/built-in) com o modelo **Gemini Nano**.
 
-Projeto de estudo desenvolvido durante a pós **Engenharia de Software com IA Aplicada (UNIPDS)**, com base nas aulas de Erick Wendel.
+Projeto de estudo desenvolvido durante a pós **Engenharia de Software com IA Aplicada (UNIPDS)**.
 
 ## Demos
 
@@ -58,6 +58,6 @@ npm run lint     # ESLint (JS) + HTMLHint (HTML)
 
 O mesmo lint roda no GitHub Actions em todo push e pull request para a `main`.
 
-## Créditos
+## Autor
 
-Conteúdo base das aulas de [Erick Wendel](https://github.com/ErickWendel) na pós-graduação Engenharia de Software com IA Aplicada — UNIPDS.
+Gabriel Antoniette — [@gabrantoniette](https://github.com/gabrantoniette)
