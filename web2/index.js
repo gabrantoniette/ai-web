@@ -76,13 +76,13 @@ function toggleSendOrStopButton(isGenerating) {
     if (isGenerating) {
         // Switch to stop mode
         aiContext.isGenerating = isGenerating;
-        elements.button.textContent = 'Parar';
+        elements.button.textContent = 'Stop';
         elements.button.classList.add('stop-button');
     } else {
         // Switch to send mode
         aiContext.abortController?.abort();
         aiContext.isGenerating = isGenerating;
-        elements.button.textContent = 'Enviar';
+        elements.button.textContent = 'Send';
         elements.button.classList.remove('stop-button');
     }
 }
@@ -96,14 +96,14 @@ async function* askAI(question, temperature, topK) {
     }
 
     const session = await LanguageModel.create({
-        expectedInputLanguages: ["pt"],
+        expectedInputLanguages: ["en"],
         temperature: temperature,
         topK: topK,
         initialPrompts: [
             {
                 role: 'system', content: `
-                Você é um assistente de IA que responde de forma clara e objetiva.
-                Responda sempre em formato de texto ao invés de markdown`
+                You are an AI assistant that answers clearly and objectively.
+                Always answer in plain text instead of markdown.`
 
             },
         ],
@@ -136,34 +136,34 @@ async function checkRequirements() {
     // @ts-ignore
     const isChrome = !!window.chrome;
     if (!isChrome)
-        errors.push("⚠️ Este recurso só funciona no Google Chrome ou Chrome Canary (versão recente).");
+        errors.push("⚠️ This feature only works in Google Chrome or Chrome Canary (recent version).");
     if (!('LanguageModel' in self)) {
-        errors.push("⚠️ As APIs nativas de IA não estão ativas.");
-        errors.push("Ative a seguinte flag em chrome://flags/:");
+        errors.push("⚠️ The native AI APIs are not enabled.");
+        errors.push("Enable the following flag in chrome://flags/:");
         errors.push("- Prompt API for Gemini Nano (chrome://flags/#prompt-api-for-gemini-nano)");
-        errors.push("Depois reinicie o Chrome e tente novamente.");
+        errors.push("Then restart Chrome and try again.");
         return returnResults();
     }
 
-    const availability = await LanguageModel.availability({ languages: ["pt"] });
+    const availability = await LanguageModel.availability({ languages: ["en"] });
     console.log('Language Model Availability:', availability);
     if (availability === 'available') {
         return returnResults();
     }
 
     if (availability === 'unavailable') {
-        errors.push(`⚠️ O seu dispositivo não suporta modelos de linguagem nativos de IA.`);
+        errors.push(`⚠️ Your device does not support native AI language models.`);
     }
 
     if (availability === 'downloading') {
-        errors.push(`⚠️ O modelo de linguagem de IA está sendo baixado. Por favor, aguarde alguns minutos e tente novamente.`);
+        errors.push(`⚠️ The AI language model is downloading. Please wait a few minutes and try again.`);
     }
 
     if (availability === 'downloadable') {
-        errors.push(`⚠️ O modelo de linguagem de IA precisa ser baixado, baixando agora... (acompanhe o progresso no terminal do chrome)`);
+        errors.push(`⚠️ The AI language model needs to be downloaded, downloading now... (follow the progress in the Chrome DevTools console)`);
         try {
             const session = await LanguageModel.create({
-                expectedInputLanguages: ["pt"],
+                expectedInputLanguages: ["en"],
                 monitor(m) {
                     m.addEventListener('downloadprogress', (e) => {
                         const percent = ((e.loaded / e.total) * 100).toFixed(0);
@@ -171,17 +171,17 @@ async function checkRequirements() {
                     });
                 }
             });
-            await session.prompt('Olá');
+            await session.prompt('Hello');
             session.destroy();
 
             // Re-check availability after download
-            const newAvailability = await LanguageModel.availability({ languages: ["pt"] });
+            const newAvailability = await LanguageModel.availability({ languages: ["en"] });
             if (newAvailability === 'available') {
                 return null; // Download successful
             }
         } catch (error) {
             console.error('Error downloading model:', error);
-            errors.push(`⚠️ Erro ao baixar o modelo: ${error.message}`);
+            errors.push(`⚠️ Error downloading the model: ${error.message}`);
         }
     }
 

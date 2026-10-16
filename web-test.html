@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <body>
-  <button id="setupButton">Verificar / baixar modelo</button>
+  <button id="setupButton">Check / download model</button>
   <pre id="log"></pre>
 
   <script>
@@ -13,13 +13,13 @@
 
     async function getAvailability() {
       if ('LanguageModel' in self) {
-        return { api: 'LanguageModel (nova)', status: await LanguageModel.availability() };
+        return { api: 'LanguageModel (new)', status: await LanguageModel.availability() };
       }
       if (self.ai?.languageModel) {
         const c = await ai.languageModel.capabilities();
-        return { api: 'ai.languageModel (antiga)', status: c.available };
+        return { api: 'ai.languageModel (legacy)', status: c.available };
       }
-      return { api: 'nenhuma', status: 'unavailable' };
+      return { api: 'none', status: 'unavailable' };
     }
 
     async function createSession() {
@@ -27,25 +27,25 @@
         return LanguageModel.create({
           monitor(m) {
             m.addEventListener('downloadprogress', e =>
-              log(`Baixando: ${Math.round(e.loaded * 100)}%`));
+              log(`Downloading: ${Math.round(e.loaded * 100)}%`));
           }
         });
       }
       return ai.languageModel.create();
     }
 
-    // Checagem automática ao carregar
-    getAvailability().then(r => log('Disponibilidade:', r));
+    // Automatic check on load
+    getAvailability().then(r => log('Availability:', r));
 
-    // Criação da sessão só depois do clique (evita NotAllowedError)
+    // Create the session only after a click (avoids NotAllowedError)
     document.getElementById('setupButton').onclick = async () => {
       try {
         const session = await createSession();
-        log('Sessão criada com sucesso');
-        const resposta = await session.prompt('Diga olá em uma frase.');
-        log('Resposta:', resposta);
+        log('Session created successfully');
+        const answer = await session.prompt('Say hello in one sentence.');
+        log('Answer:', answer);
       } catch (e) {
-        log('Erro:', e.name, e.message);
+        log('Error:', e.name, e.message);
       }
     };
   </script>

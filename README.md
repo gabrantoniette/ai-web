@@ -1,63 +1,63 @@
-# 🤖 AI Web — IA nativa no navegador
+# 🤖 AI Web — On-device AI in the browser
 
 [![CI](https://github.com/gabrantoniette/ai-web/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrantoniette/ai-web/actions/workflows/ci.yml)
 
-Demos de **IA rodando 100% no navegador**, sem servidor e sem chave de API, usando as
-[Built-in AI APIs do Chrome](https://developer.chrome.com/docs/ai/built-in) com o modelo **Gemini Nano**.
+Demos of **AI running 100% in the browser**, with no server and no API key, using
+[Chrome's Built-in AI APIs](https://developer.chrome.com/docs/ai/built-in) powered by **Gemini Nano**.
 
-Projeto de estudo desenvolvido durante a pós **Engenharia de Software com IA Aplicada (UNIPDS)**.
+Study project built during the **Software Engineering with Applied AI** graduate program (UNIPDS).
 
 ## Demos
 
-| Pasta / arquivo | O que faz | APIs usadas |
+| Folder / file | What it does | APIs used |
 | --- | --- | --- |
-| [`web-test.html`](web-test.html) | Verifica a disponibilidade do modelo e dispara o download. | `LanguageModel` |
-| [`web1.html`](web1.html) | Prompt fixo com resposta em streaming renderizada como Markdown. | `LanguageModel.promptStreaming` |
-| [`web2/`](web2) | Chat com ajuste de `temperature` e `topK` e botão de parar. | `LanguageModel`, `AbortController` |
-| [`web3/`](web3) | Chat multimodal (texto + imagem/áudio) com tradução automática EN → PT, organizado em MVC. | `LanguageModel`, `Translator`, `LanguageDetector` |
+| [`web-test.html`](web-test.html) | Checks model availability and triggers the download. | `LanguageModel` |
+| [`web1.html`](web1.html) | Fixed prompt with a streamed answer rendered as Markdown. | `LanguageModel.promptStreaming` |
+| [`web2/`](web2) | Chat with `temperature` and `topK` controls and a stop button. | `LanguageModel`, `AbortController` |
+| [`web3/`](web3) | Multimodal chat (text + image/audio) that translates answers from English to Portuguese, structured as MVC. | `LanguageModel`, `Translator`, `LanguageDetector` |
 
-## Requisitos
+## Requirements
 
-- **Google Chrome** recente (Stable 138+ ou Canary) em desktop com hardware compatível
-  ([requisitos do Gemini Nano](https://developer.chrome.com/docs/ai/get-started#hardware)).
-- Habilite as flags em `chrome://flags` e reinicie o navegador:
-  - `#prompt-api-for-gemini-nano` (e `#prompt-api-for-gemini-nano-multimodal-input` para o `web3`)
+- A recent **Google Chrome** (Stable 138+ or Canary) on a desktop with supported hardware
+  ([Gemini Nano requirements](https://developer.chrome.com/docs/ai/get-started#hardware)).
+- Enable these flags in `chrome://flags` and restart the browser:
+  - `#prompt-api-for-gemini-nano` (plus `#prompt-api-for-gemini-nano-multimodal-input` for `web3`)
   - `#translation-api`
   - `#language-detector-api`
-- Node.js 22+ (apenas para servir os arquivos e rodar o lint).
+- Node.js 22+ (only to serve the files and run the linter).
 
-Na primeira execução o Chrome baixa o modelo (alguns GB); acompanhe o progresso pelo console ou em `chrome://on-device-internals`.
+On first run Chrome downloads the model (a few GB); follow the progress in the console or at `chrome://on-device-internals`.
 
-## Como rodar
+## Getting started
 
 ```bash
-cd web3          # ou web2
+cd web3          # or web2
 npm install
-npm start        # http-server em http://localhost:8080
+npm start        # http-server at http://localhost:8080
 ```
 
-Os arquivos soltos da raiz (`web-test.html`, `web1.html`) podem ser abertos servindo a raiz com `npx http-server .`.
+The standalone files at the root (`web-test.html`, `web1.html`) can be opened by serving the root with `npx http-server .`.
 
-## Estrutura do `web3`
+## `web3` structure
 
 ```
 web3/
-├── index.js                     # bootstrap: checa requisitos e liga as camadas
+├── index.js                     # bootstrap: checks requirements and wires the layers
 ├── controllers/formController.js
-├── services/aiService.js        # sessão do LanguageModel, streaming, abort
+├── services/aiService.js        # LanguageModel session, streaming, abort
 ├── services/translationService.js
-└── views/view.js                # manipulação do DOM
+└── views/view.js                # DOM manipulation
 ```
 
-## Qualidade
+## Code quality
 
 ```bash
 npm install
 npm run lint     # ESLint (JS) + HTMLHint (HTML)
 ```
 
-O mesmo lint roda no GitHub Actions em todo push e pull request para a `main`.
+The same lint runs on GitHub Actions on every push and pull request to `main`.
 
-## Autor
+## Author
 
 Gabriel Antoniette — [@gabrantoniette](https://github.com/gabrantoniette)

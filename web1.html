@@ -15,15 +15,15 @@
         const initialPrompts = [
             {
                 role: 'system',
-                content: `Você é um assistente de IA que responde de forma clara e objetiva.`
+                content: `You are an AI assistant that answers clearly and objectively.`
             }
         ]
 
-        const question = 'Quem inventou o JavaScript?'
-        output.innerHTML = "Gerando resposta...";
+        const question = 'Who invented JavaScript?'
+        output.innerHTML = "Generating answer...";
 
         const session = await LanguageModel.create({
-            expectedInputLanguages: ["pt"],
+            expectedInputLanguages: ["en"],
             temperature,
             topK,
             initialPrompts,

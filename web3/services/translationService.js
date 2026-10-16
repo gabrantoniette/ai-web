@@ -24,7 +24,7 @@ export class TranslationService {
             return true;
         } catch (error) {
             console.error('Error initializing translation:', error);
-            throw new Error('⚠️ Erro ao inicializar APIs de tradução.', { cause: error });
+            throw new Error('⚠️ Error initializing the translation APIs.', { cause: error });
         }
     }
 
