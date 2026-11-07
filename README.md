@@ -2,6 +2,11 @@
 
 [![CI](https://github.com/gabrantoniette/ai-web/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrantoniette/ai-web/actions/workflows/ci.yml)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/gabrantoniette/gabrantoniette/main/assets/generated/languages/ai-web-dark.svg">
+  <img src="https://raw.githubusercontent.com/gabrantoniette/gabrantoniette/main/assets/generated/languages/ai-web-light.svg" alt="Languages in ai-web, by share of code">
+</picture>
+
 Demos of **AI running 100% in the browser**, with no server and no API key, using
 [Chrome's Built-in AI APIs](https://developer.chrome.com/docs/ai/built-in) powered by **Gemini Nano**.
 
