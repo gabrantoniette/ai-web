@@ -11,7 +11,7 @@
 Demos of **AI running 100% in the browser**, with no server and no API key, using
 [Chrome's Built-in AI APIs](https://developer.chrome.com/docs/ai/built-in) powered by **Gemini Nano**.
 
-Study project built during the **Software Engineering with Applied AI** graduate program (UNIPDS).
+Personal study project.
 
 ## Demos
 
