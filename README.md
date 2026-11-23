@@ -1,6 +1,7 @@
 # 🤖 AI Web — On-device AI in the browser
 
 [![CI](https://github.com/gabrantoniette/ai-web/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrantoniette/ai-web/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/gabrantoniette/gabrantoniette/main/assets/generated/languages/ai-web-dark.svg">
@@ -62,6 +63,10 @@ npm run lint     # ESLint (JS) + HTMLHint (HTML)
 ```
 
 The same lint runs on GitHub Actions on every push and pull request to `main`.
+
+## License
+
+[MIT](LICENSE)
 
 ## Author
 
